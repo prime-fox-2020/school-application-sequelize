@@ -1,0 +1,14 @@
+<%- include('partials/header')%>
+
+    <div class="container p-5">
+        <form action="/students/add" method="POST">
+            <%- include('partials/form', {type : 'Add'} )%>
+    </div>
+    <div class="container text-center">
+        <div class="container pt-1">
+            <a href="/students">Back</a>
+        </div>
+    
+    </div>
+    
+<%- include('partials/footer')%>
