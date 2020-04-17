@@ -1,0 +1,9 @@
+1. npm init
+2. npm i pg sequelize
+3. gitignore
+4. run sequelize init
+5. setup config dan create database 
+    #. (edit config/config.json) -> 
+    #. termininal: sequelize db:create
+    #. to drop database (terminal: sequelize db:drop)
+6. create model + migration table
