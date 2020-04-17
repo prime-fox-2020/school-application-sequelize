@@ -5,6 +5,7 @@ module.exports = {
     const data = JSON.parse(require('fs').readFileSync('./data/teachers.json', 'utf-8'));
 
     data.map(el => {
+        delete el.id;
         el.createdAt = new Date();
         el.updatedAt = new Date();
     });
