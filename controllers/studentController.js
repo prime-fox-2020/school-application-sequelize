@@ -8,7 +8,7 @@ class StudentController {
                 res.render('student', { data, message: req.query.message });
             })
             .catch(err => {
-                res.send(err);
+                res.render('error', {err})
             })
     }
 
@@ -35,7 +35,7 @@ class StudentController {
                     res.redirect(`/students?message=Success Add Student "${data.first_name} ${data.last_name}"`);
                 })
                 .catch(err => {
-                    res.send(err);
+                    res.render('error', {err})
                 })
         }
     }
@@ -46,7 +46,7 @@ class StudentController {
                 res.send(data);
             })
             .catch(err => {
-                res.send(err);
+                res.render('error', {err})
             })
     }
 
@@ -56,7 +56,7 @@ class StudentController {
                 res.render('student_edit', {data, error: req.query.error});
             })
             .catch(err => {
-                res.send(err);
+                res.render('error', {err})
             })
     }
 
@@ -64,7 +64,13 @@ class StudentController {
         const errorMsg = Validators.validating(req.body);
 
         if(errorMsg.length >= 1){
-            res.redirect(`/students/${req.params.id}/edit?error=${errorMsg.join(' ')}`);
+            Student.findByPk(req.params.id, {})
+                .then(data => {
+                    res.render('student_edit', {data, error: errorMsg.join(' ')});
+                })
+                .catch(err => {
+                    res.render('error', {err})
+                })
         } else {
             Student.update({
                 first_name: req.body.first_name,
@@ -78,7 +84,7 @@ class StudentController {
                     res.redirect(`/students?message=Success Edit Student "${req.body.first_name} ${req.body.last_name}"`);
                 })
                 .catch(err => {
-                    res.send(err);
+                    res.render('error', {err})
                 })
         }
     }
