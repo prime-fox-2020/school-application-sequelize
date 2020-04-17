@@ -5,7 +5,7 @@
     "last_name": "Santoso",
     "email": "jokosantoso@sekolah.id",
     "gender": "male",
-    "birth_date": "28 Juni 2005"
+    "birth_date": "2005-06-28"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "last_name": "Riki",
     "email": "lukmanriki@sekolah.id",
     "gender": "male",
-    "birth_date": "13 April 2004"
+    "birth_date": "2004-04-13"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "last_name": "Nurhayati",
     "email": "sitinurhayati@sekolah.id",
     "gender": "female",
-    "birth_date": "12 Mei 2005"
+    "birth_date": "2005-05-13"
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "last_name": "Risti",
     "email": "rikaristi@sekolah.id",
     "gender": "female",
-    "birth_date": "3 Januari 2005"
+    "birth_date": "2005-01-03"
   },
   {
     "id": 5,
@@ -37,6 +37,6 @@
     "last_name": "Son",
     "email": "samson@mail.com",
     "gender": "male",
-    "birth_date": "2 Februari 2000"
+    "birth_date": "2000-02-02"
   }
 ]

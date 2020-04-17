@@ -31,9 +31,7 @@ class Validators{
             }
         }
 
-        let birth_date = date.reverse().join(' ');
-
-        return {errorMsg, birth_date}
+        return errorMsg
     }
 }
 

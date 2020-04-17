@@ -31,7 +31,7 @@
         <label for="female">Female</label><br>
 
         <h3>Birth Date</h3>
-        <input type="text" name="birth_date" value="<%= data.birth_date %>"> 
+        <input type="text" name="birth_date" value="<%= data.birth_date.toISOString().slice(0, 10) %>"> 
         <br>
         <button type="submit">EDIT</button>
     </form>

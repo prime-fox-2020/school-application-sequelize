@@ -6,6 +6,7 @@ module.exports = {
 
     data.map(el => {
         delete el.id;
+        el.birth_date = new Date(el.birth_date);
         el.createdAt = new Date();
         el.updatedAt = new Date();
     });

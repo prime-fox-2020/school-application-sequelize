@@ -1,5 +1,4 @@
 const { Student } = require('../models');
-const ChangeMonth = require('../helpers/date');
 const Validators = require('../helpers/validators');
 
 class StudentController {
@@ -18,7 +17,7 @@ class StudentController {
     }
 
     static add_post(req, res) {
-        const { errorMsg, birth_date } = Validators.validating(req.body);
+        const errorMsg = Validators.validating(req.body);
 
         if(errorMsg.length >= 1){
             res.redirect(`/students/add?error=${errorMsg.join(' ')}`);
@@ -28,7 +27,7 @@ class StudentController {
                 last_name: req.body.last_name,
                 email: req.body.email,
                 gender: req.body.gender,
-                birth_date,
+                birth_date: new Date(req.body.birth_date),
                 createdAt: new Date(),
                 updatedAt: new Date()
             })
@@ -54,20 +53,15 @@ class StudentController {
     static edit_get(req, res) {
         Student.findByPk(req.params.id, {})
             .then(data => {
-                let date = data.dataValues.birth_date.split(' ');
-                date[1] = ChangeMonth.changeToNumber(date[1]);
-
-                if(date[0] < 10){
-                    date[0] = `0${date[0]}`;
-                }
-
-                data.dataValues.birth_date = date.reverse().join('-');
                 res.render('student_edit', {data, error: req.query.error});
+            })
+            .catch(err => {
+                res.send(err);
             })
     }
 
     static edit_post(req, res) {
-        const { errorMsg, birth_date } = Validators.validating(req.body);
+        const errorMsg = Validators.validating(req.body);
 
         if(errorMsg.length >= 1){
             res.redirect(`/students/${req.params.id}/edit?error=${errorMsg.join(' ')}`);
@@ -77,7 +71,7 @@ class StudentController {
                 last_name: req.body.last_name,
                 email: req.body.email,
                 gender: req.body.gender,
-                birth_date,
+                birth_date: new Date(req.body.birth_date),
                 updatedAt: new Date()
             }, {where: {id: req.params.id}})
                 .then(data => {
