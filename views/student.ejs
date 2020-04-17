@@ -1,0 +1,31 @@
+<%- include('./partials/navbar.ejs', { title : 'Student',error: false, nav1 : '/', menu1 : 'Home', nav2 : '/teacher', menu2 : 'Teacher', nav3 : '/subject', menu3 : 'Subject'}) %>
+<h1 style="color: gold; text-align: center;"> Students Data </h1>
+<h4 style="text-align: center;"><a href="/student/add">Add Student</a></h4>
+<table class="table" >
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Birthdate</th>
+            <th scope="col">Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(let i = 0; i < student.length; i++) { %>
+        <tr>
+            <th scope="row"><%= i + 1 %></th>
+            <td><%= student[i].first_name %></td>
+            <td><%= student[i].last_name %></td>
+            <td><%= student[i].email %></td>
+            <td><%= student[i].gender %></td>
+            <td><%= student[i].birth_date %></td>
+            <td><a href="/student/<%= student[i].id %>/edit">Edit</a> | <a href="/student/<%= student[i].id %>/delete">Delete</a></td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+
+<%- include('./partials/footer.ejs') %>

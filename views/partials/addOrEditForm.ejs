@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url("https://images.unsplash.com/photo-1462822257719-8e456a6b23ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=913&q=80");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        h1 {
+            text-align: center;
+            color: darkturquoise;
+        }
+
+        .container {
+            max-width: 30em;
+        }
+
+        label,
+        h6 {
+            color: floralwhite;
+        }
+    </style>
+    <title><%= title %></title>
+</head>
+
+<body>
+    <div class="container">
+        <h1><%= judul %></h1>
+        <% if (error) {%>
+            <div class="alert alert-danger" role="alert">
+                <%= error %> 
+              </div>
+        <% } %>
+        <form action='/student/<%= id %>/<%= addOrEdit %>' method="POST">
+            <div class="form-group">
+                <label for="formGroupExampleInput">First Name</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Arthur"
+                    name="first_name" value="<%= valueFirstName %>">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Last Name</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Holmes"
+                    name="last_name" value="<%= valueLastName %>">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Email</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2"
+                    placeholder="ArthurHolmes@sekolah.id" name="email" value="<%= valueEmail %>">
+            </div>
+            <h6>Gender</h6>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio1" name="gender" class="custom-control-input" value="male"
+                    <% if(valueGender == "male") { %>
+                         checked>
+                          <% } else { %>
+                          >
+                          <% } %>
+                <label class="custom-control-label" for="customRadio1">Male</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio2" name="gender" class="custom-control-input" value="female"
+                    <% if(valueGender == "female") { %>
+                         checked >
+                         <% } else { %>
+                         >
+                         <% } %>
+                <label class="custom-control-label" for="customRadio2">Female</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio3" name="gender" class="custom-control-input" value="other"
+                <% if(valueGender == "other") { %>
+                    checked >
+                    <% } else { %>
+                    >
+                    <% } %>
+                <label class="custom-control-label" for="customRadio3">Other</label>
+            </div>
+            <br>
+            <div>
+                <h6>Birthdate</h6>
+                <%= console.log(valueBirthdate); %>
+                <input type="date" name="birth_date" value="<%= valueBirthdate %>">
+            </div>
+            <br>
+            <div>
+                <button class="btn btn-primary" type="submit"><%= submitButton %></button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
