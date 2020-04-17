@@ -1,10 +1,10 @@
 <%- include('./partial/header') %>
 <body>
   <%- include('./partial/navbar') %>
-  <h1 align="center">Students Data</h1>
+  <h1 align="center">Students Data</h1><br>
   <ul class="nav justify-content-center">
     <li class="nav-item">
-      <a class="nav-link active" href="/students/add">Add Students</a>
+      <a class="btn btn-primary btn-lg" href="/students/add" role="button">Add Students</a>
     </li>
   </ul>
   <% if (alert) { %>
@@ -38,7 +38,11 @@
       <% }) %>
     </tbody>
   </table>
-  <% } %>
+  <% }else{ %>
+    <div class="alert alert-dark" role="alert">
+      Student not found!!
+    </div>
+    <%}%>
     </tbody>
   </table>
 </body>

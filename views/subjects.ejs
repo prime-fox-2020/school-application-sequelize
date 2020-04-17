@@ -1,7 +1,7 @@
 <%- include('./partial/header') %>
 <body>
   <%- include('./partial/navbar') %>
-  <h1 align="center">Subjects Data</h1><br><br><br>
+  <h1 align="center">Subjects Data</h1><br><br><br><br>
   <% if (data.length) { %>
     <table class="table table-sm table-dark">
       <thead>
@@ -18,7 +18,11 @@
       <% }) %>
     </tbody>
   </table>
-  <% } %>
+  <% }else{ %>
+    <div class="alert alert-dark" role="alert">
+      Subject not found!!
+    </div>
+    <%}%>
     </tbody>
   </table>
 </body>
