@@ -1,11 +1,11 @@
 const { Student } = require('../models');
 const ChangeMonth = require('../helpers/date');
+const Validators = require('../helpers/validators');
 
 class StudentController {
     static read(req, res) {
         Student.findAll({order: [['id', 'ASC']]})
             .then(data => {
-                console.log(data)
                 res.render('student', { data, message: req.query.message });
             })
             .catch(err => {
@@ -18,40 +18,9 @@ class StudentController {
     }
 
     static add_post(req, res) {
-        let errorMsg = [];
-        let date = req.body.birth_date.split('-');
+        const { errorMsg, birth_date } = Validators.validating(req.body);
 
-        if (req.body.first_name === '') {
-            errorMsg.push('First Name is Empty!');
-        }
-        if (req.body.last_name === '') {
-            errorMsg.push('Last Name is Empty!');
-        }
-        if (req.body.email === '') {
-            errorMsg.push('Email is Empty!');
-        }
-        if (req.body.gender === undefined) {
-            errorMsg.push('Gender is Empty!');
-        }
-        if (req.body.birth_date === '') {
-            errorMsg.push('Birth Date is Empty!');
-        } else {
-            if (date[2] > 31) {
-                errorMsg.push("DD isn't more than 31");
-            }
-            if (date[1] > 12) {
-                errorMsg.push("Are u Have month more than 12?");
-            } else {
-                date[1] = ChangeMonth.changeToWord(date[1]);
-            }
-            if (date[0] > 2020 || date[0] < 1900) {
-                errorMsg.push("You can type this if u live in this century!")
-            }
-        }
-
-        let birth_date = date.reverse().join(' ');
-
-        if(errorMsg.length > 1){
+        if(errorMsg.length >= 1){
             res.redirect(`/students/add?error=${errorMsg.join(' ')}`);
         } else {
             Student.create({
@@ -98,40 +67,9 @@ class StudentController {
     }
 
     static edit_post(req, res) {
-        let errorMsg = [];
-        let date = req.body.birth_date.split('-');
+        const { errorMsg, birth_date } = Validators.validating(req.body);
 
-        if (req.body.first_name === '') {
-            errorMsg.push('First Name is Empty!');
-        }
-        if (req.body.last_name === '') {
-            errorMsg.push('Last Name is Empty!');
-        }
-        if (req.body.email === '') {
-            errorMsg.push('Email is Empty!');
-        }
-        if (req.body.gender === undefined) {
-            errorMsg.push('Gender is Empty!');
-        }
-        if (req.body.birth_date === '') {
-            errorMsg.push('Birth Date is Empty!');
-        } else {
-            if (date[2] > 31) {
-                errorMsg.push("DD isn't more than 31");
-            }
-            if (date[1] > 12) {
-                errorMsg.push("Are u Have month more than 12?");
-            } else {
-                date[1] = ChangeMonth.changeToWord(date[1]);
-            }
-            if (date[0] > 2020 || date[0] < 1900) {
-                errorMsg.push("You can type this if u live in this century!")
-            }
-        }
-
-        let birth_date = date.reverse().join(' ');
-
-        if(errorMsg.length > 1){
+        if(errorMsg.length >= 1){
             res.redirect(`/students/${req.params.id}/edit?error=${errorMsg.join(' ')}`);
         } else {
             Student.update({
