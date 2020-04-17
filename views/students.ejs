@@ -1,0 +1,35 @@
+<%- include ('./partials/header') %>
+<div class="container text-center">
+  <h3 class = 'mt-3 mb-1'>Students Data</h3>
+  <a href="/students/add" class="btn btn-primary btn-sm my-3">add student</a>
+  <table class="table table-bordered">
+    <thead class = 'thead-dark'>
+      <tr class = 'text-center'>
+      <th scope="col">No.</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Birth Date</th>
+      <th scope="col">Option</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(let i = 0; i < students.length; i++) { %>
+      <tr class = 'text-center'>
+        <th scope="row"><%= i+1 %></th>
+        <td><%= students[i].first_name %></td>
+        <td><%= students[i].last_name %></td>
+        <td><%= students[i].email %></td>
+        <td><%= students[i].gender %></td>
+        <td><%= students[i].birth_date %></td>
+        <td>
+          <a href="/students/<%= students[i].id %>/edit">Edit</a> | 
+          <a href="/students/<%= students[i].id %>/delete">Delete</a>
+        </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+<%- include ('./partials/footer')%>
