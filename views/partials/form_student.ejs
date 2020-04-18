@@ -1,0 +1,55 @@
+<div class="container w-25 p-3 text-center">
+    <form action="" method="POST">
+        <div class="form-group"> 
+            <label>Your name</label>
+            <input type="text" class="form-control" name="first_name" placeholder="First name"
+            <% if (list) { %>
+                value="<%= list.first_name %>"
+            <% } %>
+            ><br>
+            <input type="text" class="form-control" name="last_name" placeholder="Last name"
+            <% if (list) { %>
+                value="<%= list.last_name %>"
+            <% } %>
+            ><br>
+        </div>
+        <div class="form-group">
+            <label for="email">Your email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email address"
+            <% if (list) { %>
+                value="<%= list.email %>"
+            <% } %>
+            ><br>
+        </div>
+        <div class="form-group">
+            <label>Your gender:</label><br>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="male" value="male" 
+                <% if (list && list.gender == 'male') { %>
+                    <%= 'checked' %>
+                <% } %>
+                >
+                <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="female" value="female"
+                <% if (list && list.gender == 'female') { %>
+                    <%= 'checked' %>
+                <% } %>
+                >
+                <label class="form-check-label" for="female">Female</label><br>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="birth_date">Birth date</label><br>
+            <input type="date"  class="form-control" id="birth_date" name="birth_date"
+            <% if (list) { %>
+                value="<%= list.birth_date %>"
+            <% } %>
+            ><br>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </form>
+</div>
