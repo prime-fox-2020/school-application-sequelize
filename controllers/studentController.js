@@ -19,29 +19,36 @@ class StudentController {
 		}
 		if (!body.last_name) {
 			kotak.push('Nama belakang harus diisi');
-    }
-     
-    if(!body.email){
-      kotak.push('email tidak boleh kosong ya')
-    }
-    
-		if (body.email.indexOf('@') == -1 ) {
-			kotak.push('Isi dengan email yang benar');
 		}
+
+		if (!body.email) {
+			kotak.push('email tidak boleh kosong ya');
+		}
+
+		if (body.email) {
+			if (body.email.indexOf('@') == -1) {
+				kotak.push('Email Harus Ada Simbol "@"');
+			}
+		}
+
 		if (body.gender === '') {
-			kotak.push('Kamu Cewek apa Cowok?');
+			kotak.push('Gender Harus Diisi');
 		}
-    
-    if (
-			body.birth_date[4] !== '-' ||
-			body.birth_date[7] !== '-' ||
-			(body.birth_date[5] == 1 && body.birth_date[6] == 3) ||
-			(body.birth_date[8] == 3 && body.birth_date[9] == 2) ||
-			body.birth_date.length !== 10 ||
-			body.birth_date[5] > 1 ||
-			body.birth_date[8] > 3
-		) {
-			kotak.push('Format nya harus YYY-MM-DD');
+
+		if (body.birth_date) {
+			if (
+				body.birth_date[4] !== '-' ||
+				body.birth_date[7] !== '-' ||
+				(body.birth_date[5] == 1 && body.birth_date[6] == 3) ||
+				(body.birth_date[8] == 3 && body.birth_date[9] == 2) ||
+				body.birth_date.length !== 10 ||
+				body.birth_date[5] > 1 ||
+				body.birth_date[8] > 3
+			) {
+				kotak.push('Invalid Birth Date');
+			}
+		} else {
+			kotak.push('Birth Date Harus Diisi');
 		}
 		return kotak;
 	}
@@ -67,22 +74,22 @@ class StudentController {
 		const kotak = StudentController.cek(req.body);
 		if (kotak.length > 0) {
 			res.redirect(`/students/add?error=${kotak.join(',')}`);
+		} else {
+			students
+				.create({
+					first_name: req.body.first_name,
+					last_name: req.body.last_name,
+					email: req.body.email,
+					gender: req.body.gender,
+					birth_date: req.body.birth_date
+				})
+				.then((students) => {
+					res.redirect('/students');
+				})
+				.catch((err) => {
+					res.send(err);
+				});
 		}
-
-		students
-			.create({
-				first_name: req.body.first_name,
-				last_name: req.body.last_name,
-				email: req.body.email,
-				gender: req.body.gender,
-				birth_date: req.body.birth_date
-			})
-			.then((students) => {
-				res.redirect('/students');
-			})
-			.catch((err) => {
-				res.send(err);
-			});
 	}
 
 	static editGet(req, res) {
@@ -102,29 +109,29 @@ class StudentController {
 
 		if (kotak.length > 0) {
 			res.redirect(`/students/${req.params.id}/edit/?error=${kotak.join(',')}`);
-		}
-
-		students
-			.update(
-				{
-					first_name: req.body.first_name,
-					last_name: req.body.last_name,
-					email: req.body.email,
-					gender: req.body.gender,
-					birth_date: req.body.birth_date
-				},
-				{
-					where: {
-						id: req.params.id
+		} else {
+			students
+				.update(
+					{
+						first_name: req.body.first_name,
+						last_name: req.body.last_name,
+						email: req.body.email,
+						gender: req.body.gender,
+						birth_date: req.body.birth_date
+					},
+					{
+						where: {
+							id: req.params.id
+						}
 					}
-				}
-			)
-			.then((students) => {
-				res.redirect('/students');
-			})
-			.catch((err) => {
-				res.send(err);
-			});
+				)
+				.then((students) => {
+					res.redirect('/students');
+				})
+				.catch((err) => {
+					res.send(err);
+				});
+		}
 	}
 	static delete(req, res) {
 		students
@@ -139,22 +146,23 @@ class StudentController {
 			.catch((err) => {
 				res.send(err);
 			});
-  }
-  
+	}
 
-  static getByEmail(req,res){
-    students.findAll({where:{
-      email: req.params.email
-    }})
-   
-    .then(students=>{
-     console.log(students[0].dataValues)
-      res.render('students.ejs', {students : [students[0].dataValues]})
-    })
-    .catch(err=>{
-      res.send(err)
-    })
-  }
+	static getByEmail(req, res) {
+		students
+			.findAll({
+				where: {
+					email: req.params.email
+				}
+			})
+			.then((students) => {
+				console.log(students[0].dataValues);
+				res.render('students.ejs', { students: [ students[0].dataValues ] });
+			})
+			.catch((err) => {
+				res.send(err);
+			});
+	}
 }
 
 module.exports = StudentController;
