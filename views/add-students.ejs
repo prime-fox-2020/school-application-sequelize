@@ -40,7 +40,6 @@
         <%} else if (error === 'Email harus ada character @') {%>
             <p><%= error %></p>
         <%}%>
-
         <label>Email:</label> <br>
         <input type="text" name="email"> <br><br>
         
@@ -51,6 +50,8 @@
         </select> <br><br>
 
         <%if (error === 'Birth Date harus diisi') {%>
+            <p><%= error %></p>
+        <%} else if (error === 'Tanggal tidak valid') {%>
             <p><%= error %></p>
         <%}%>
         <label>Birth Date:(YYYY-MM-DD)</label> <br>
