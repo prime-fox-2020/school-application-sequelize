@@ -1,0 +1,48 @@
+<%- include('./partials/head')%>
+<style>
+  form {
+    margin: 0 auto;
+    width:250px;
+    display: flex;
+    flex-flow: row;
+  }
+  </style>
+
+<a href='/students/add' type="button" class="btn btn-primary btn-lg" >Add Students</a><br><br>
+
+<form action='/students/<%= students.email%>' method="POST">
+  <input type="text" name='email' class="form-control" id="exampleFormControlInput1" placeholder="search student email here">
+  <input type="submit" class="btn btn-primary btn-sm" value='SEARCH'>
+</form><br>
+
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Birth Date</th>
+      <th scope='col'>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= students[0].id %></td>
+        <td><%= students[0].first_name %></td>
+        <td><%= students[0].last_name %></td>
+        <td><%= students[0].email %></td>
+        <td><%= students[0].gender %></td>
+        <td><%= students[0].birth_date %></td>
+        <td>
+          <a href='/students/<%= students[0].id %>/edit' type="button" class="btn btn-primary">EDIT</button>
+          <a href="/students/<%= students[0].id %>/delete" type="button" class="btn btn-danger">DELETE</a></td>
+      </tr>
+  </tbody>
+</table>
+
+
+<%- include('./partials/foot')%>

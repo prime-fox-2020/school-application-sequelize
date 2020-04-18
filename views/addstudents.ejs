@@ -1,0 +1,32 @@
+<%- include('./partials/head')%>
+<style>
+  form {
+    margin: 0 auto;
+    width:250px;
+  }
+</style>
+<form action="/students/add" method="POST">
+  <div class="form-group mb-2">
+      <label for="exampleFormControlInput1">First Name</label>
+      <input type="text" name='first_name' class="form-control" id="exampleFormControlInput1" placeholder=""><br>
+
+      <label for="exampleFormControlInput1">Last Name</label>
+      <input type="text" name='last_name' class="form-control" id="exampleFormControlInput1" placeholder=""><br>
+
+      <label for="exampleFormControlInput1">Email</label>
+      <input type="email" name='email' class="form-control" id="exampleFormControlInput1" placeholder="user@sekolah.id"><br>
+
+      <label for="exampleFormControlInput1">Gender</label><br>
+
+      <input type="radio" name='gender' value='Male'>
+      <label for='radiomale'>Male</label>
+      <input type="radio" name='gender' value='Female'>
+      <label for="radiofemale">Female</label><br><br>
+
+      <label for="exampleFormControlInput1">Birth Date</label>
+      <input type="date" name='birth_date' class="form-control" id="exampleFormControlInput1"><br>
+      <button type="submit" class="btn btn-primary">Submit</button>    <a href="/students" type="submit" class="btn btn-danger">Cancel</a>
+    </div>
+</form>
+
+<%- include('./partials/foot')%>

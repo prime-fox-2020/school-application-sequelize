@@ -1,0 +1,33 @@
+<%- include('./partials/head')%>
+<style>
+  form {
+    margin: 0 auto;
+    width:250px;
+  }
+</style>
+<form action="/students/<%= students.id %>/edit" method="POST">
+  <div class="form-group mb-2">
+      <label for="exampleFormControlInput1">First Name</label>
+      <input type="text" name='first_name' class="form-control" id="exampleFormControlInput1" value='<%= students.first_name%>'><br>
+
+      <label for="exampleFormControlInput1">Last Name</label>
+      <input type="text" name='last_name' class="form-control" id="exampleFormControlInput1" value='<%= students.last_name%>'><br>
+
+      <label for="exampleFormControlInput1">Email</label>
+      <input type="email" name='email' class="form-control" id="exampleFormControlInput1" value='<%= students.email%>'><br>
+
+      <label for="exampleFormControlInput1">Gender</label><br>
+
+      <input type="radio" name='gender' value='Male' <%= students.gender == 'Male' ? "checked" : '' %>>
+      <label for='radiomale'>Male</label>
+      <input type="radio" name='gender' value='Female' <%= students.gender == 'Female' ? "checked" : '' %>>
+      <label for="radiofemale">Female</label><br><br>
+
+      <label for="exampleFormControlInput1">Birth Date</label>
+      <input type="date" name='birth_date' class="form-control" id="exampleFormControlInput1" value='<%= students.birth_date %>'><br>
+
+      <button type="submit" class="btn btn-primary">Update</button>    <a href="/students" type="submit" class="btn btn-danger">Cancel</a>
+    </div>
+</form>
+
+<%- include('./partials/foot')%>

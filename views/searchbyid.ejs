@@ -1,0 +1,33 @@
+<%- include('./partials/head')%>
+<style>
+  form {
+    margin: 0 auto;
+    width:250px;
+    display: flex;
+    flex-flow: row;
+  }
+  </style>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= teachers[0].id %></td>
+        <td><%= teachers[0].first_name %></td>
+        <td><%= teachers[0].last_name %></td>
+        <td><%= teachers[0].email %></td>
+        <td><%= teachers[0].gender %></td>
+      </tr>
+  </tbody>
+</table>
+
+
+<%- include('./partials/foot')%>
