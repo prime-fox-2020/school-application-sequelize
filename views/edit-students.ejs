@@ -21,24 +21,24 @@
     </nav>
     <h1>Edit Student</h1>
 
-    <form action="/students/edit/:id" method="post"> 
+    <form action="/students/edit/<%=id%>" method="post"> 
         <label>First Name:</label> <br>
-        <input type="text" value="first_name"> <br><br>
+        <input type="text" name="first_name" value="<%=dataStudents.first_name%>"> <br><br>
 
         <label>Last Name:</label> <br>
-        <input type="text" value="last_name"> <br><br>
+        <input type="text" name="last_name" value="<%=dataStudents.last_name%>"> <br><br>
         
         <label>Email:</label> <br>
-        <input type="text" value="email"> <br><br>
+        <input type="text" name="email" value="<%=dataStudents.email%>"> <br><br>
         
         <label>Gender:</label> <br>
         <select name="gender">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="male" <%= dataStudents.gender === 'male' ? 'selected' : ''%>>Male</option>
+            <option value="female" <%= dataStudents.gender === 'female' ? 'selected' : ''%>>Female</option>
         </select> <br><br>
 
         <label>Birth Date:(YYYY-MM-DD)</label> <br>
-        <input type="text" value="birth_date"> <br><br>
+        <input type="text" name="birth_date" value="<%=dataStudents.birth_date%>"> <br><br>
 
         <button type="submit">Save</button>
         <button><a href="/students">Cancel</a></button>

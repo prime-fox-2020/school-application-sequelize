@@ -13,7 +13,7 @@
 <body>
     <nav>
         <ul>
-            <li><a href="/students">Data Students (belum ada data hanya judul halamannya saja)</a></li>
+            <li><a href="/students">Data Students</a></li>
             <li><a href="/teachers">Data Teachers (belum ada data hanya judul halamannya saja)</a></li>
             <li><a href="/subjects">Data Subjects (belum ada data hanya judul halamannya saja)</a></li>
             <li><a href="/">Home</a></li>
@@ -21,7 +21,18 @@
     </nav>
     <h1>DATA STUDENTS</h1>
 
+    <form action="/students/:id" method="post">
+        <label>Search Students by Id</label> <br>
+        <input type="text" name="students_by_id"><br>
+        <button type="submit">Search</button> <br><br>
+    </form>
+    <br><br>
+
     <button><a href="/students/add">Add new student</a></button> <br><br>
+
+    <%if (pesan) {%>
+        <p><%=pesan%></p>
+    <%}%>
 
     <table border="2">
         <thead>
@@ -36,16 +47,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>data id</td>
-                <td>data first_name</td>
-                <td>data last_name</td>
-                <td>data email</td>
-                <td>data gender</td>
-                <td>data birth_date</td>
-                <td><a href="/students/edit/:id">options(edit)</a></td>
-                <td><a href="/students/delete/:id">options(delete)</a></td>
-            </tr>
+            <%for (let i in data) {%>
+                <tr>
+                    <td><%=data[i].id%></td>
+                    <td><%=data[i].first_name%></td>
+                    <td><%=data[i].last_name%></td>
+                    <td><%=data[i].email%></td>
+                    <td><%=data[i].gender%></td>
+                    <td><%=data[i].birth_date%></td>
+                    <td><a href="/students/edit/<%=data[i].id%>">EDIT</a></td>
+                    <td><a href="/students/delete/<%=data[i].id%>">DELETE</a></td>
+                </tr>    
+            <%}%>
         </tbody>
     </table>
 </body>
