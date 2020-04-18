@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add students page</title>
+</head>
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/students">Data Students (belum ada data hanya judul halamannya saja)</a></li>
+            <li><a href="/teachers">Data Teachers (belum ada data hanya judul halamannya saja)</a></li>
+            <li><a href="/subjects">Data Subjects (belum ada data hanya judul halamannya saja)</a></li>
+            <li><a href="/">Home</a></li>
+        </ul>
+    </nav>
+    <h1>Add New Students</h1>
+
+    <form action="/students/add" method="post"> 
+        <label>First Name:</label> <br>
+        <input type="text" name="first_name"> <br><br>
+
+        <label>Last Name:</label> <br>
+        <input type="text" name="last_name"> <br><br>
+        
+        <label>Email:</label> <br>
+        <input type="text" name="email"> <br><br>
+        
+        <label>Gender:</label> <br>
+        <select name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select> <br><br>
+
+        <label>Birth Date:(YYYY-MM-DD)</label> <br>
+        <input type="text" name="birth_date"> <br><br>
+
+        <button type="submit">Add</button>
+        <button><a href="/students">Cancel</a></button>
+    </form>
+
+</body>
+</html>

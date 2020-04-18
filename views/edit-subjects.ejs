@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edit subject page</title>
+</head>
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/students">Data Students (belum ada data hanya judul halamannya saja)</a></li>
+            <li><a href="/teachers">Data Teachers (belum ada data hanya judul halamannya saja)</a></li>
+            <li><a href="/subjects">Data Subjects (belum ada data hanya judul halamannya saja)</a></li>
+            <li><a href="/">Home</a></li>
+        </ul>
+    </nav>
+    <h1>Edit Subject</h1>
+
+    <form action="/subjects/edit/:id" method="post"> 
+        <label>Subject Name:</label> <br>
+        <select name="subject_name">
+            <option value="matematika">Matematika</option>
+            <option value="bahasa_inggris">Bahasa Ingrris</option>
+            <option value="bahasa_indonesia">Bahasa Indonesia</option>
+            <option value="fisika">Fisika</option>
+            <option value="kimia">Kimia</option>
+            <option value="biologi">Biologi</option>
+            <option value="geografi">Geografi</option>
+            <option value="ekonomi">Ekonomi</option>
+            <option value="sosiologi">Sosiolgi</option>
+            <option value="sejarah">Sejarah</option>
+            <option value="agama">Agama</option>
+            <option value="muatan_lokal">Muatan Lokal</option>
+        </select> <br><br>
+
+        <label>Nilai Minimum</label> <br>
+        <input type="text" name="nilai_minimum"> <br><br>
+
+        <button type="submit">Save</button>
+        <button><a href="/subjects">Cancel</a></button>
+    </form>
+
+</body>
+</html>

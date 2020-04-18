@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edit teacher page</title>
+</head>
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/students">Data Students (belum ada data hanya judul halamannya saja)</a></li>
+            <li><a href="/teachers">Data Teachers (belum ada data hanya judul halamannya saja)</a></li>
+            <li><a href="/subjects">Data Subjects (belum ada data hanya judul halamannya saja)</a></li>
+            <li><a href="/">Home</a></li>
+        </ul>
+    </nav>
+    <h1>Edit Teacher</h1>
+
+    <form action="/teachers/edit/:id" method="post"> 
+        <label>First Name:</label> <br>
+        <input type="text" name="first_name"> <br><br>
+
+        <label>Last Name:</label> <br>
+        <input type="text" name="last_name"> <br><br>
+        
+        <label>Email:</label> <br>
+        <input type="text" name="email"> <br><br>
+        
+        <label>Gender:</label> <br>
+        <select name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select> <br><br>
+
+        <button type="submit">Save</button>
+        <button><a href="/teachers">Cancel</a></button>
+    </form>
+
+</body>
+</html>
