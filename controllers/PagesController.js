@@ -1,7 +1,7 @@
 class PagesController{
 
   static getHome(req, res) {
-    res.send('PageHome')
+    res.render('index')
   }
 }
 

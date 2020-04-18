@@ -1,7 +1,10 @@
+const {Teacher} = require('../models')
 class TeachersController {
 
-  static getHome(req, res) {
-    res.send('TeachersHome')
+  static findAll(req, res) {
+    Teacher.findAll({})
+      .then(teachers => { res.render('teacher', {teachers}) })
+      .catch(err => { res.send(err) })
   }
 }
 

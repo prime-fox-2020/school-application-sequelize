@@ -1,0 +1,9 @@
+<div class="alert alert-<%= alert.type %>" role="alert">
+  <% if (typeof alert.message === 'string') { %>
+    <p><%= alert.message %></p>
+  <% } else { %>
+    <% for (let i = 0; i < alert.message.length; i++) { %>
+      <p><%= alert.message[i] %></p>
+    <% } %>
+  <% } %>
+</div>

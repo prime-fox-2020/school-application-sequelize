@@ -1,7 +1,11 @@
+const {Subject} = require('../models')
+
 class SubjectsController {
 
-  static getHome(req, res) {
-    res.send('SubjectsHome')
+  static findAll(req, res) {
+    Subject.findAll({})
+      .then(subjects => { res.render('subject', {subjects}) })
+      .catch(err => { res.send(err) })
   }
 }
 

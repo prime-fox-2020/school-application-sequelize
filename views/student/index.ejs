@@ -1,0 +1,41 @@
+<%- include('../partials/header', {title: 'Data Students', page: 'Student'}) %>
+
+<main class="container pt-4 pb-4">
+  <h3 class="d-inline-block">List of Students</h3>
+  <a href="/students/add" class="btn btn-primary float-right">Add Student</a>
+
+  <% if(alert.type) { %>
+  <%- include('../partials/alert', {alert}) %>
+  <% } %>
+  
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Birth Date</th>
+        <th scope="col">Email</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% for ( let i = 0; i < students.length; i++ ) { %>
+      <tr>
+        <th scope="row"><%= i + 1 %></th>
+        <td><%= students[i].firstName %></td>
+        <td><%= students[i].lastName %></td>
+        <td><%= students[i].gender %></td>
+        <td><%= students[i].birthDate %></td>
+        <td><%= students[i].email %></td>
+        <td><a class="btn btn-info" href="/students/edit/<%= students[i].id %>">Edit</a> &nbsp; <a class="btn btn-danger" href="/students/delete/<%= students[i].id %>">Delete</a></td>
+      </tr>
+      <% } %>
+
+    </tbody>
+  </table>
+</main>
+
+<%- include('../partials/footer') %>
