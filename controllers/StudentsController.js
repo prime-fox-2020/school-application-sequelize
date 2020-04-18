@@ -2,9 +2,10 @@ const Student = require('../models').Student
 
 class StudentsController{
     static getPage(req, res){
+        const alert = req.query
         Student.findAll()
         .then( data => {
-            res.render('students', {data})
+            res.render('students', {data, alert})
         })
         .catch( err => {
             res.render('error', err)
@@ -26,13 +27,14 @@ class StudentsController{
     }
 
     static add(req, res){
-        res.render('add')
+        const alert = req.query
+        res.render('add', {alert})
     }
 
     static addPost(req, res){
         const check = StudentsController.validate(req.body)
         if(check.length > 0){
-            res.redirect(`/students?err=${check.join(',')}`)
+            res.redirect(`/students/add?msg=${check.join(', ')}`)
         } else {
             const temp = req.body.birth_date.split('-').reverse().join('-')
             const formatDate = new Date(temp)
@@ -44,10 +46,11 @@ class StudentsController{
                 birth_date : formatDate
             })
             .then( () => {
-                res.redirect(`/students`)
+                const msg = `New student added to table`
+                res.redirect(`/students?msg=${msg}`)
             })
             .catch( err => {
-                res.redirect(`/students/add`)
+                res.render('error', {err})
             })
         }
     }
@@ -59,7 +62,8 @@ class StudentsController{
             }
         })
         .then( () => {
-            res.redirect(`/students`)
+            const msg = `Student with id ${req.params.id} data has been deleted`
+            res.redirect(`/students?msg=${msg}`)
         })
         .catch( err => {
             res.render('error', {err})
@@ -67,9 +71,10 @@ class StudentsController{
     }
 
     static edit(req, res){
+        const alert = req.query
         Student.findByPk(Number(req.params.id))
         .then( data => {
-            res.render('edit', {data})
+            res.render('edit', {data, alert})
         })
         .catch( err => {
             res.render('error', {err})
@@ -79,7 +84,7 @@ class StudentsController{
     static editPost(req, res){
         const check = StudentsController.validate(req.body)
         if(check.length > 0){
-            res.redirect(`/students/edit/${req.params.id}?err=${check.join(',')}`)
+            res.redirect(`/students/edit/${req.params.id}?msg=${check.join(',')}`)
         } else {
             const temp = req.body.birth_date.split('-').reverse().join('-')
             const formatDate = new Date(temp)
@@ -94,7 +99,8 @@ class StudentsController{
                 }}
             )
             .then( () => {
-                res.redirect('/students')
+                const msg = `Successfully edit student data with id ${req.params.id}`
+                res.redirect(`/students?msg=${msg}`)
             })
             .catch( err => {
                 res.render('error', {err})

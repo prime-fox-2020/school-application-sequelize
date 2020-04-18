@@ -8,6 +8,13 @@
             <button class="btn btn-outline-secondary" type="button" onclick="search()">Search</button>
         </div>
       </div>
+      <% if(alert.msg){ %>
+        <div class="container p-3">
+          <div class="alert alert-info" role="alert">
+            <%= alert.msg %>
+          </div>
+        </div>
+      <% } %>
       <table class="table table-striped" >
         <thead>
           <tr>
