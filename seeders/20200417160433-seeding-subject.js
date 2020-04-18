@@ -7,6 +7,11 @@ module.exports = {
         subject_name: 'Fisika',
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        subject_name: 'Ekonomi',
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
   },

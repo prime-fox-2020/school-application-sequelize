@@ -1,13 +1,19 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Student = sequelize.define('Student', {
+  const Sequelize = sequelize.Sequelize;
+  const Model = Sequelize.Model;
+
+  class Student extends Model {};
+
+  Student.init({
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
+    gender: DataTypes.STRING,
     email: DataTypes.STRING,
     birth_date: DataTypes.DATE
-  }, {});
-  Student.associate = function(models) {
-    // associations can be defined here
-  };
+  }, {
+    sequelize
+  });
+
   return Student;
 };

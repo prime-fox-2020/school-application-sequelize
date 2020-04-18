@@ -1,0 +1,21 @@
+<%- include('partials/header', {title: 'SchoolApp Homepage'}) %>
+
+<div class="container">
+  <table class="table mt-3">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Subject Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.forEach(el => { %>
+        <tr>
+          <td><%= el.id %></td>
+          <td><%= el.subject_name %></td>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('partials/footer') %>
