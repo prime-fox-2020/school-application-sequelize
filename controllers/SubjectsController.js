@@ -3,7 +3,9 @@ const {Subject} = require('../models')
 class SubjectsController {
 
   static findAll(req, res) {
-    Subject.findAll({})
+    Subject.findAll({
+      order: [ [ 'id', 'ASC' ] ]
+    })
       .then(subjects => {
         let locals = {
           subjects: subjects,

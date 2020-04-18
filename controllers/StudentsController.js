@@ -5,7 +5,9 @@ const { gt, lte, ne, in: opIn, iLike, like, or } = Sequelize.Op
 class StudentsController {
 
   static findAll(req, res) {
-    Student.findAll({})
+    Student.findAll({
+      order: [['id', 'ASC']]
+    })
       .then(students => {
         let locals = {
           students: students.map(el => {

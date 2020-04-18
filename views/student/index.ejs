@@ -30,7 +30,7 @@
         <td style="text-transform: capitalize;"><%= students[i].gender %></td>
         <td><%= students[i].birthDate %></td>
         <td><%= students[i].email %></td>
-        <td><a class="btn btn-info" href="/students/edit/<%= students[i].id %>">Edit</a> &nbsp; <a class="btn btn-danger" href="/students/delete/<%= students[i].id %>">Delete</a></td>
+        <td><a class="btn btn-info" href="/students/edit/<%= students[i].id %>">Edit</a> &nbsp; <a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')" href="/students/delete/<%= students[i].id %>">Delete</a></td>
       </tr>
       <% } %>
 

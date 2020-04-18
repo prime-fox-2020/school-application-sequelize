@@ -2,7 +2,9 @@ const {Teacher} = require('../models')
 class TeachersController {
 
   static findAll(req, res) {
-    Teacher.findAll({})
+    Teacher.findAll({
+      order: [ [ 'id', 'ASC' ] ]
+    })
       .then(teachers => {
         let locals = {
           teachers: teachers,
