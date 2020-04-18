@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('partials/bootstrap') %>
+        <title>Add subject Data</title>
+    </head>
+    <body style="position: center;"> 
+      <%- include('partials/navbar') %> 
+        <h1 style="text-align: center;">Add subject Data</h1>
+        <p style="text-align: center;"><a href="/subjects">show all data</a></p>
+        <div class="alert alert-primary" role="alert">
+          <% if (error) { %>
+            <p style="color: red;"><%= error %></p>
+          <% } %>
+        </div>
+        <form action='/subjects/add' method = 'POST'>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label >Subject Name :</label>
+                <input type="text" class="form-control" name="subject_name" placeholder="subject_name">
+              </div>
+            </div>
+            <button type="submit" name = "submit"class="btn btn-primary mb-2" >Add subject</button>
+          </form>
+    </body>
+    <foot>
+
+    </foot>
+</html>
+

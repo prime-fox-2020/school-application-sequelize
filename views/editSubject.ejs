@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('partials/bootstrap') %>
+        <title>Add Subject Data</title>
+    </head>
+    <body style="position: center;"> 
+        <%- include('partials/navbar') %> 
+        <h1 style="text-align: center;">Edit Data Subject</h1>
+        <p style="text-align: center;"><a href="/subjects">show all data</a></p>
+        <form action="/subjects/edit/<%=data.id%>" method = 'POST'>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label >Subject Name:</label>
+                <input type="text" class="form-control" name="subject_name" value="<%=data.subject_name%>">
+              </div>
+            <button type="submit" name = "submit" class="btn btn-primary mb-2" >Edit Subject</button>
+          </form>
+    </body>
+    <foot>
+
+    </foot>
+</html>
+

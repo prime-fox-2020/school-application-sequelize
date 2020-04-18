@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <%- include('partials/bootstrap') %>
+        <title>Students</title>
+    </head>
+    <body>
+        <%- include('partials/navbar') %> 
+        
+        <h1 style="text-align: center;">Data Students</h1>
+        <p style="text-align: center;"><a href="/students/add">Add student</a></p>
+        <table class="table table-sm">
+            <thead class="table-info">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">First_name</th>
+                <th scope="col">Last_name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Birth_date</th>
+                <th scope="col">Created_at</th>
+                <th scope="col">Update_at</th>
+                <th scope="col">Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(let i=0; i<data.length; i++) { %>
+              <tr>
+                    <td><%= data[i].id %></td>
+                    <td><%= data[i].first_name %></td>
+                    <td><%= data[i].last_name %></td>
+                    <td><%= data[i].email %></td>
+                    <td><%= data[i].gender %></td>
+                    <td><%= data[i].birthdate %></td>
+                    <td><%= data[i].createdAt %></td>
+                    <td><%= data[i].updatedAt %></td>
+                    <td>
+                        <button ><a href="/students/edit/<%= data[i].id %>" >Edit</a></button> || 
+                        <button><a href="/students/delete/<%= data[i].id %>">Delete</a></button>
+                    </td>
+              </tr>
+            </tbody>
+            <% } %>
+          </table>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <%- include('partials/bootstrap') %>
+        <title>Subject</title>
+    </head>
+    <body>
+        <%- include('partials/navbar') %> 
+        
+        <h1 style="text-align: center;">Data Subject</h1>
+        <p style="text-align: center;"><a href="/subjects/add">Add Subject</a></p>
+        <table class="table table-sm">
+            <thead class="table-info">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Subject_name</th>
+                <th scope="col">Created_at</th>
+                <th scope="col">Update_at</th>
+                <th scope="col">Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(let i=0; i<data.length; i++) { %>
+              <tr>
+                    <td><%= data[i].id %></td>
+                    <td><%= data[i].subject_name %></td>
+                    <td><%= data[i].createdAt %></td>
+                    <td><%= data[i].updatedAt %></td>
+                    <td>
+                        <button ><a href="/subjects/edit/<%= data[i].id %>" >Edit</a></button> || 
+                        <button><a href="/subjects/delete/<%= data[i].id %>">Delete</a></button>
+                    </td>
+              </tr>
+            </tbody>
+            <% } %>
+          </table>
+    </body>
+</html>
