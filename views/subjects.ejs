@@ -1,0 +1,23 @@
+<%- include('partials/header')%>
+    <div class="container p-5 text-center">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center">ID</th>
+            <th scope="col" class="text-center">Subject</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < data.length; i++){ %>
+                <tr>
+                    <th scope="row" class="text-center"><a href="/subjects/<%= data[i].id %>"><%= data[i].id %></a></th>
+                    <td class="text-center"><%= data[i].subject_name %></td>
+                </tr>
+            <% } %>
+        </tbody>
+      </table>
+      <div class="container pt-3">
+        <a href="/">Back to home</a>
+      </div>
+    </div>
+<%- include('partials/footer')%>

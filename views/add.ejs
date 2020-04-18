@@ -1,0 +1,22 @@
+<%- include('partials/header')%>
+    <div class="container-xl p-5 text-center">
+        <% if(alert.msg){ %>
+            <div class="container">
+                <div class="alert alert-danger" role="alert">
+                    <%= alert.msg %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+    <div class="container px-5">
+        <form action="/students/add" method="POST">
+            <%- include('partials/form', {type : 'Add'} )%>
+    </div>
+    <div class="container text-center">
+        <div class="container mt-5">
+            <a href="/students">Back</a>
+        </div>
+    
+    </div>
+    
+<%- include('partials/footer')%>
