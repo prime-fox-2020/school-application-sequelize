@@ -1,0 +1,24 @@
+<%-include('./partial/header')%>
+<table class="table mt-5" >
+    <thead>
+      <tr>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Email</th>
+        <th scope="col">Gender</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%for(i=0;i<data.length;i++){%>
+      <tr>
+        <td><%= data[i].first_name%></td>
+        <td><%= data[i].last_name%></td>
+        <td><%= data[i].email%></td>
+        <td><%= data[i].gender%></td>
+      </tr>
+        <%}%>
+    </tbody>
+  </table>
+
+
+<%-include('./partial/footer')%>

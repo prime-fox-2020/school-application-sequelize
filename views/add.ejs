@@ -1,0 +1,9 @@
+<%-include('./partial/header')%>
+<%if(err){%>
+<div>
+    <p><%=err%></p>
+</div>
+<%}%>
+<form action="/students/add" method="POST">
+  <%-include('./partial/form',{type:''})%>
+<%-include('./partial/footer')%>

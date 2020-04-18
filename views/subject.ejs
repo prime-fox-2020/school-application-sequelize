@@ -1,0 +1,20 @@
+<%-include('./partial/header')%>
+<table class="table mt-5" >
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Subject</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%for(i=0;i<data.length;i++){%>
+      <tr>
+        <td><%= data[i].id%></td>
+        <td><%= data[i].subject_name%></td>
+      </tr>
+        <%}%>
+    </tbody>
+  </table>
+
+
+<%-include('./partial/footer')%>
