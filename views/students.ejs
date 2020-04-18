@@ -3,6 +3,10 @@
 <div class="container">
   <h1 class="title mt-4">Students Data</h1>
   <a href="/students/add"><button class="btn btn-primary">Add Students Data</button></a>
+  <form class="form-inline my-2 my-lg-0" style="float: right;" method="POST" action="/students">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search by Email" aria-label="Search" name="email">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
   <table class="table mt-3">
     <thead class="thead-dark">
       <tr>
@@ -31,6 +35,9 @@
           </td>
         </tr>
       <% }) %>
+      <% if (!data.length) { %>
+        <tr><td colspan="7" style="text-align: center;">Data tidak ditemukan</td></tr>
+      <% } %>
     </tbody>
   </table>
 </div>

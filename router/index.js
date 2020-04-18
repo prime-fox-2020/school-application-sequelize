@@ -12,4 +12,8 @@ router.get('/', (req, res) => {
   res.render('home');
 })
 
+router.get('/*', (req, res) => {
+  res.render('error', {msg: 'Page not found'});
+})
+
 module.exports = router;
