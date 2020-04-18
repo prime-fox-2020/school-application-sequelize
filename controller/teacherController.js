@@ -19,6 +19,18 @@ class TeacherController{
             res.render('teacher',{data:[data]})
         })
     }
+
+    static postData(req,res){
+        Teacher.findOne({
+            where:{
+                id:req.body.search
+            },
+        }).then(data=>{
+            res.render('teacher',{data:[data]})
+        }).catch(err=>{
+            res.send(err)
+        })
+    }
 }
 
 module.exports=TeacherController

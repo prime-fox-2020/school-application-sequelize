@@ -21,6 +21,18 @@ class SubjectController{
             res.send(err)    
         })
     }
+
+    static postData(req,res){
+        Subject.findOne({
+            where:{
+                id:req.body.search
+            },
+        }).then(data=>{
+            res.render('subject',{data:[data]})
+        }).catch(err=>{
+            res.send(err)
+        })
+    }
 }
 
 module.exports=SubjectController

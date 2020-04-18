@@ -147,6 +147,18 @@ class StudentsController{
             res.send(err)
         })
     }
+
+    static postData(req,res){
+        Student.findOne({
+            where:{
+                email:req.body.search
+            },
+        }).then(data=>{
+            res.render('student',{data:[data]})
+        }).catch(err=>{
+            res.send(err)
+        })
+    }
 }
 
 module.exports=StudentsController

@@ -2,6 +2,7 @@ const router=require('express').Router()
 const studentsController=require('../controller/studentsController')
 
 router.get('/',studentsController.show)
+router.post('/',studentsController.postData)
 router.get('/add',studentsController.add)
 router.post('/add',studentsController.addPost)
 router.get('/:id/delete',studentsController.delete)
