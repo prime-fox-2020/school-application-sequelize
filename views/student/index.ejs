@@ -25,9 +25,9 @@
       <% for ( let i = 0; i < students.length; i++ ) { %>
       <tr>
         <th scope="row"><%= i + 1 %></th>
-        <td><%= students[i].firstName %></td>
-        <td><%= students[i].lastName %></td>
-        <td><%= students[i].gender %></td>
+        <td style="text-transform: capitalize;"><%= students[i].firstName %></td>
+        <td style="text-transform: capitalize;"><%= students[i].lastName %></td>
+        <td style="text-transform: capitalize;"><%= students[i].gender %></td>
         <td><%= students[i].birthDate %></td>
         <td><%= students[i].email %></td>
         <td><a class="btn btn-info" href="/students/edit/<%= students[i].id %>">Edit</a> &nbsp; <a class="btn btn-danger" href="/students/delete/<%= students[i].id %>">Delete</a></td>

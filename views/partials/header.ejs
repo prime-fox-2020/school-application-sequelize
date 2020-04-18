@@ -35,9 +35,23 @@
             </li>
           </ul>
         </div>
+        <% if (page==='Student') { %>
+        <form action="/students/search" method="post" class="form-inline">
+          <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search students by email" aria-label="Search">
+          <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <% } %>
+
         <% if (page==='Teacher') { %>
-        <form action="/teachers/" class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search Teacher by ID" aria-label="Search">
+        <form action="/teachers/search" method="post" class="form-inline">
+          <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search teacher by ID" aria-label="Search">
+          <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <% } %>
+
+        <% if (page==='Subject') { %>
+        <form action="/subjects/search" method="post" class="form-inline">
+          <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search subjects by ID" aria-label="Search">
           <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
         </form>
         <% } %>

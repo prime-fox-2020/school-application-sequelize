@@ -15,6 +15,9 @@ router.route('/edit/:id')
   .get(StudentsController.editForm)
   .post(StudentsController.edit)
 
+router.route('/search')
+  .post(StudentsController.search)
+
 router.route('/*')
   .get((req, res) => res.render('404'))
 

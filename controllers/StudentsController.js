@@ -1,4 +1,6 @@
+const {Sequelize} = require('sequelize')
 const {Student} = require('../models')
+const { gt, lte, ne, in: opIn, iLike, like, or } = Sequelize.Op
 
 class StudentsController {
 
@@ -6,12 +8,43 @@ class StudentsController {
     Student.findAll({})
       .then(students => {
         let locals = {
-          students: students,
+          students: students.map(el => {
+            el.dataValues.birthDate = StudentsController.dbToIndonesian(el.dataValues.birthDate)
+            return el
+          }),
           alert: req.query
         }
         res.render('student', locals)
       })
       .catch(err => res.send(err))
+  }
+
+  static search(req, res) {
+    // res.send(req.body)
+    Student.findAll({
+      where: {
+        email: {
+          [ like ]: `%${req.body.search}%`
+        }
+      }
+    })
+    .then(results => {
+      let locals = { students: results }
+      if (results !== null) {
+        locals.alert = {
+          message: `Found ${results.length} student with email like '${req.body.search}'`,
+          type: 'success'
+        }
+        res.render('student', locals)
+      } else {
+        locals.alert = {
+          message: `Found 0 student with email like '${req.body.search}'`,
+          type: 'danger'
+        }
+        res.render('student', locals)
+      }
+    })
+    .catch(err => res.send(err))
   }
 
   static addForm(req, res) {
@@ -44,19 +77,28 @@ class StudentsController {
   }
 
   static editForm(req, res) {
-    Student.findByPk(req.params.id)
+    const fail = `Student with ID ${req.params.id} is not found.`
+    if (isNaN(req.params.id)) {
+      res.redirect(`/students?message=${fail}&type=danger`)
+    } else {
+      Student.findByPk(req.params.id)
       .then(results => {
-        let locals = {
-          alert: {}, 
-          data: results, 
-          method: 'edit',
-          title: 'Edit data student'
+        if (results !== null) {
+          let locals = {
+            alert: {}, 
+            data: results, 
+            method: 'edit',
+            title: 'Edit data student'
+          }
+  
+          results.dataValues.birthDate = StudentsController.convertBod(results.dataValues.birthDate)
+          res.render('student/form', locals)
+        } else {
+          res.redirect(`/students?message=${fail}&type=danger`)
         }
-
-        results.dataValues.birthDate = StudentsController.convertBod(results.dataValues.birthDate)
-        res.render('student/form', locals)
       })
       .catch(err => res.send(err))
+    }
   }
 
   static edit(req, res) {
@@ -74,7 +116,6 @@ class StudentsController {
       res.render('student/form', locals)
     } else {
       req.body.birthDate = StudentsController.validateBod(req.body.birthDate)
-      console.log(req.body)
       Student.update(req.body, {where: {id: req.params.id}})
         .then(result => res.redirect(`/students?message=${message}&type=success`))
         .catch(err => res.send(err))
@@ -89,7 +130,6 @@ class StudentsController {
     } else {
       Student.findByPk(req.params.id)
       .then(results => {
-        console.log(results)
         if (results !== null) {
           Student.destroy({ where: { id: Number(req.params.id) } })
           .then(results => res.redirect(`/students?message=${success}&type=success`))
@@ -154,6 +194,14 @@ class StudentsController {
   static convertBod(birthDate) {
     const [yyyy, mm, dd] = birthDate.split('-')
     return `${dd}-${mm}-${yyyy}`
+  }
+
+  static dbToIndonesian(birthDate) {
+    const dictionary = [ 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni'
+      , 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember' ]
+    const [yyyy, mm, dd] = birthDate.split('-')
+
+    return `${Number(dd)} ${dictionary[Number(mm)]} ${yyyy}`
   }
 }
 
