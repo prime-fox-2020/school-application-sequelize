@@ -1,0 +1,40 @@
+<%- include('../partials/header', {title: 'Data Teachers', page: 'Teacher'}) %>
+
+<main class="container pt-4 pb-4">
+  <h3 class="d-inline-block">List of Teachers</h3>
+  <a href="/teachers/add" class="btn btn-primary float-right">Add Teacher</a>
+
+  <% if(alert.type) { %>
+  <%- include('../partials/alert', {alert}) %>
+  <% } %>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Email</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% for ( let i = 0; i < teachers.length; i++ ) { %>
+      <tr>
+        <th scope="row"><%= i + 1 %></th>
+        <td style="text-transform: capitalize;"><%= teachers[i].firstName %></td>
+        <td style="text-transform: capitalize;"><%= teachers[i].lastName %></td>
+        <td style="text-transform: capitalize;"><%= teachers[i].gender %></td>
+        <td><%= teachers[i].email %></td>
+        <td><a class="btn btn-info" href="/teachers/edit/<%= teachers[i].id %>">Edit</a> &nbsp; 
+          <a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')" href="/teachers/delete/<%= teachers[i].id %>">Delete</a></td>
+      </tr>
+      <% } %>
+
+    </tbody>
+  </table>
+</main>
+
+<%- include('../partials/footer') %>
