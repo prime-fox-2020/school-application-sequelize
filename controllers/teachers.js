@@ -8,6 +8,7 @@ class TeachersController {
             ]
         })
         .then(data => {
+            console.log(data)
             res.render('teachers', { teachers: data })
         })
         .catch(err => {

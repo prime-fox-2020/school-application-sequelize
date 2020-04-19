@@ -27,7 +27,7 @@ class StudentsController {
             error.push('Please fill all fields')
         }
 
-        if(data.email.includes('@') || data.email.includes('.')){
+        if(!data.email.includes('@') || !data.email.includes('.')){
             error.push('Please input the correct email address')
         }
 
@@ -39,7 +39,7 @@ class StudentsController {
             let mm = birth_date[1]
             let yyyy = birth_date[2]
 
-            if(dd.length !== 2 || mm.length !== 2 || yyyy.length !== 2){
+            if(dd.length > 2 || dd.length < 1 || mm.length > 2 || mm.length < 1 || yyyy.length !== 4){
                 error.push('Please input birth date with dd-mm-yyyy format')
             } else {
                 dd = Number(dd)
@@ -50,7 +50,7 @@ class StudentsController {
                     error.push('Please input dd between 1 & 31')
                 }
 
-                if(dd < 1 || dd > 12){
+                if(mm < 1 || mm > 12){
                     error.push('Please input mm between 1 & 12')
                 }
 
@@ -63,7 +63,7 @@ class StudentsController {
     }
 
     static addProcess(req, res) {
-        const error = this.validation(req.body)
+        const error = StudentsController.validation(req.body)
 
         if (error.length > 0) {
             res.redirect(`/students/add?error=${error.join(', ')}`)
@@ -113,7 +113,7 @@ class StudentsController {
     }
 
     static editProcess(req, res) {
-        const error = this.validation(req.body)
+        const error = StudentsController.validation(req.body)
         
         if (error.length > 0) {
             res.redirect(`/students/${req.params.id}/edit?error=${error.join(' ')}`)

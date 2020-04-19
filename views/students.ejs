@@ -19,7 +19,7 @@
         <td><%= students[i].last_name %></td>
         <td><%= students[i].email %></td>
         <td><%= students[i].gender %></td>
-        <td><%= students[i].birth_date %></td>
+        <td><%=`${students[i].birth_date.getDate()}-${students[i].birth_date.getMonth()+1}-${students[i].birth_date.getFullYear()}`%></td>
         <td><a href="/students/<%= students[i].id %>/edit">Edit</a> | <a href="/students/<%= students[i].id %>/delete">Delete</a></td>
       </tr>
       <% } %> 
