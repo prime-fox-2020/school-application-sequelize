@@ -38,7 +38,7 @@ class StudentControllers {
         } else {
             let date = data.birthDate.split('-')
             if (date.length !== 3) {
-                error.push('Follow the date format! -> MM-DD-YYYY')
+                error.push('Follow the date format! -> DD-MM-YYYY')
             } else if (Number(date[1] == NaN)) {
                 error.push('Please write the Month in Number!')
             } else if (date[0] < 1 || date[0] > 31) {
@@ -97,12 +97,14 @@ class StudentControllers {
         if (error.length > 0) {
             res.redirect(`/students/${req.body.studentId}/edit?error=${error.join(' ')}`)
         } else {
+            const temp = req.body.birthDate.split('-').reverse().join('-')
+            const newDate = new Date(temp)
             Student.update({
                 first_name: req.body.firstName,
                 last_name: req.body.lastName,
                 email: req.body.email,
                 gender: req.body.gender,
-                birth_date: req.body.birthDate
+                birth_date: newDate
             }, {
                 where: {
                     id : req.body.studentId
@@ -136,7 +138,7 @@ class StudentControllers {
     static getEmail(req, res) {
         Student.findAll({where: {email: req.params.email}})
             .then(data => {
-                res.render('students', {students: data});
+                res.render('students', {students: data, alert : req.query});
             })
             .catch(err => {
                 res.render('error', {error: err})
