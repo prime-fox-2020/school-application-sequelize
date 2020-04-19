@@ -1,0 +1,35 @@
+<%- include('partials/top.ejs') %>
+
+<div class='header'>
+    <h1>Students' Detailed Information</h1>
+</div>
+
+<table class='studentsTable'>
+  <tr>
+    <th>No.</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Gender</th>
+    <th>Birth Date</th>
+  </tr>
+  <% students.forEach(i => { %>
+    <tr>
+      <td><%= i.id %></td>
+      <td><%= i.firstName %></td>
+      <td><%= i.lastName %></td>
+      <td><%= i.email %></td>
+      <td><%= i.gender %></td>
+      <td><%= i.birthDate %></td>
+      <td>
+        <a href="/students/edit/<%= i.id %>">Edit</a>
+        | 
+        <a href="/students/delete/<%= i.id %>">Delete</a>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+<br>
+<a href="/students/add">Add Student</a>
+
+<%- include('partials/bottom.ejs') %>
