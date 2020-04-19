@@ -1,0 +1,39 @@
+<%- include('../template/head', {title}); %>
+
+<form action=<%=title[0] == 'A'?'/teachers/add': '/teachers/edit/'+data.id%> method="POST" style="padding: 2% 5%;">
+    <%if(alert) {%>
+    <div class="alert alert-danger" role="alert">
+        <%= alert%>
+    </div>
+    <%}%>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">First Name</label>
+        <input value="<%= data.first_name%>" name="first_name" type="text" class="form-control"
+    id="exampleFormControlInput1" placeholder="first name">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">last Name</label>
+        <input value="<%= data.last_name%>" name="last_name" type="text" class="form-control"
+            id="exampleFormControlInput1" placeholder="last name">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Email</label>
+        <input value="<%= data.email%>" name="email" type="email" class="form-control" id="exampleFormControlInput1"
+            placeholder="email">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Gender</label>
+        <select name="gender" class="form-control" id="exampleFormControlSelect1">
+            <option <%= data.gender == 'male'? 'selected':''%>>male</option>
+            <option <%= data.gender == 'female'? 'selected':''%>>female</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button> &nbsp;
+    <a href="/teachers" type="button" class="btn btn-danger">Cancel</a>
+        <input style="visibility: hidden;" value="<%= title%>" name="act" type="text"> 
+        <input style="visibility: hidden;" value="<%= data.id?data.id:''%>" name="id" type="text">    
+</form>
+
+</body>
+
+</html>
