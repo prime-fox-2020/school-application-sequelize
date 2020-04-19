@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include ('./partials/head', {title: "Subjects"}) %>
+
+<body>
+    <%- include ('./partials/navbar') %>
+    <div class="jumbotron jumbotrom-fluid bg-light">
+        <div class="container">
+            <h1 class="display-3">List Subjects</h1>
+            <p class="lead">
+                <a class="btn btn-primary" href="/subjects/add" role="button">Add Subject</a>
+            </p>
+
+            <% if (msg) { %>
+            <div class="alert alert-info" role="alert">
+                <%= msg %>
+            </div>
+            <% } %>
+
+            <% if (data) { %>
+            <table class="table table-striped table-inverse table-responsive">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>id</th>
+                        <th>subject name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach(el => { %>
+                    <tr>
+                        <td><%= el.id %> </td>
+                        <td><%= el.subject_name %> </td>
+                        <td>
+                            <a href="/subjects/<%= el.id %>/edit"><button
+                                    class="btn btn-outline-primary">Edit</button></a>
+                            <a href="/subjects/<%= el.id %>/delete"><button class="btn btn-danger">Delete</button></a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <% } %>
+        </div>
+    </div>
+</body>
+
+</html>
