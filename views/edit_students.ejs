@@ -2,8 +2,33 @@
 <% if(error){ %>
     <p style="color: red;"><%= error %></p>
 <% } %>
+<!-- <% console.log('ini dari ejs',data[0].gender) %> -->
 <body>
     <form action ="/students/edit/<%=id%>" method ="post">
-        <%- include('partials/edit_add_form',{Button : "Edit"}) %>
+        <label>First Name:</label>
+        <br>
+        <input type ="text" name="first_name" value = "<%= data[0].first_name %>">
+        <br>
+        <label> Last Name:</label>
+        <br>
+        <input type ="text" name="last_name" value ="<%= data[0].last_name %>">
+        <br>
+        <label>E-mail:</label>
+        <br>
+        <input type ="text" name="email" value = "<%= data[0].email %>">
+        <br>
+        <label>Gender :</label>
+        <br>
+        <select name="gender">
+            <option value ="Male" <%= data[0].gender == "Male" ? "selected" : "" %>>Male</option>
+            <option value ="Female" <%= data[0].gender == "Female" ? "selected" : "" %>>Female</option>
+        </select>
+        <br>
+        <label>Date of Birth:</label>
+        <br>
+        <input type ="text" placeholder="DD-MM-YYYY" name="birth_date" value="<%=data[0].birth_date%>">
+        <br>
+        <br>
+        <button type ="submit">Edit</button>
     </form>
 </body>
