@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>teacher by email page</title>
+</head>
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>
+<body>
+    <%- include('partials/nav-bar')%>
+    <h1>DATA TEACHER BY EMAIL</h1>
+
+    <% if (pesan) {%>
+        <h4><%=pesan%></h4>
+    <%}%>
+
+    <%if (dataByEmail) {%>
+        <table border="2">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>FIRST NAME</td>
+                    <td>LAST NAME</td>
+                    <td>EMAIL</td>
+                    <td>GENDER</td>
+                    <td colspan="2">OPTIONS</td>
+                </tr>
+            </thead>
+            <tbody>
+                <%for (let i in dataByEmail) {%>
+                    <tr>
+                        <td><%=dataByEmail[i].id%></td>
+                        <td><%=dataByEmail[i].first_name%></td>
+                        <td><%=dataByEmail[i].last_name%></td>
+                        <td><%=dataByEmail[i].email%></td>
+                        <td><%=dataByEmail[i].gender%></td>
+                        <td><a href="/teachers/edit/<%=dataByEmail[i].id%>">EDIT</a></td>
+                        <td><a href="/teachers/delete/<%=dataByEmail[i].id%>">DELETE</a></td>
+                    </tr>    
+                <%}%>
+            </tbody>
+        </table>
+    <%}%>
+
+</body>
+</html>

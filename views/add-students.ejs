@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add student page</title>
+</head>
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>
+<body>
+    <%- include('partials/nav-bar')%>
+    <h1>Add New Student</h1>
+
+    <form action="/students/add" method="post"> 
+        <%if (error === 'First Name harus diisi') {%>
+            <p><%= error %></p>
+        <%}%>
+        <label>First Name:</label> <br>
+        <input type="text" name="first_name"> <br><br>
+
+        <%if (error === 'Last Name harus diisi') {%>
+            <p><%= error %></p>
+        <%}%>
+        <label>Last Name:</label> <br>
+        <input type="text" name="last_name"> <br><br>
+        
+        
+        <%if (error === 'Email harus diisi') {%>
+            <p><%= error %></p>
+        <%} else if (error === 'Email harus ada character @') {%>
+            <p><%= error %></p>
+        <%}%>
+        <label>Email:</label> <br>
+        <input type="text" name="email"> <br><br>
+        
+        <label>Gender:</label> <br>
+        <select name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select> <br><br>
+
+        <%if (error === 'Birth Date harus diisi') {%>
+            <p><%= error %></p>
+        <%} else if (error === 'Tanggal tidak valid') {%>
+            <p><%= error %></p>
+        <%}%>
+        <label>Birth Date:(YYYY-MM-DD)</label> <br>
+        <input type="text" name="birth_date"> <br><br>
+
+        <button type="submit">Add</button>
+        <button><a href="/students">Cancel</a></button>
+    </form>
+
+</body>
+</html>

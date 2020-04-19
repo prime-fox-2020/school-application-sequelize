@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edit teacher page</title>
+</head>
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>
+<body>
+    <%- include('partials/nav-bar')%>
+    <h1>Edit Teacher</h1>
+
+    <form action="/teachers/edit/<%=id%>" method="post"> 
+
+        <%if (error === 'First Name harus diisi') {%>
+            <p><%= error %></p>
+        <%}%>
+        <label>First Name:</label> <br>
+        <input type="text" name="first_name" value="<%=dataTeachers.first_name%>"> <br><br>
+
+
+        <%if (error === 'Last Name harus diisi') {%>
+            <p><%= error %></p>
+        <%}%>
+        <label>Last Name:</label> <br>
+        <input type="text" name="last_name" value="<%=dataTeachers.last_name%>"> <br><br>
+        
+        <%if (error === 'Email harus diisi') {%>
+            <p><%= error %></p>
+        <%} else if (error === 'Email harus ada character @') {%>
+            <p><%= error %></p>
+        <%}%>
+        <label>Email:</label> <br>
+        <input type="text" name="email" value="<%=dataTeachers.email%>"> <br><br>
+        
+        <label>Gender:</label> <br>
+        <select name="gender">
+            <option value="male" <%= dataTeachers.gender === 'male' ? 'selected' : ''%>>Male</option>
+            <option value="female" <%= dataTeachers.gender === 'female' ? 'selected' : ''%>>Female</option>
+        </select> <br><br>
+
+        <button type="submit">Save</button>
+        <button><a href="/teachers">Cancel</a></button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data subjrcts page</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <%- include('partials/nav-bar')%>
+
+    <h1>DATA SUBJECTS</h1>
+
+    <form action="/subjects/:subject_name" method="post">
+        <label>Search Subject by Name</label> <br>
+        <input type="text" name="subject_by_name"><br>
+        <button type="submit">Search</button> <br><br>
+    </form>
+    <br><br>
+
+    <button><a href="/subjects/add">Add new subject</a></button> <br><br>
+
+    <%if (pesan) {%>
+        <p><%=pesan%></p>
+    <%}%>
+
+    <table border="2">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>SUBJECT NAME</td>
+                <td>NILAI MINUMUM</td>
+                <td colspan="2">OPTIONS</td>
+            </tr>
+        </thead>
+        <tbody>
+            <%for (let i in data) {%>
+                <tr>
+                    <td><%=data[i].id%></td>
+                    <td><%=data[i].subject_name%></td>
+                    <td><%=data[i].nilai_minimum%></td>
+                    <td><a href="/subjects/edit/<%=data[i].id%>">EDIT</a></td>
+                    <td><a href="/subjects/delete/<%=data[i].id%>">DELETE</a></td>
+                </tr>    
+            <%}%>
+        </tbody>
+    </table>
+    <%- include('partials/back-to-home')%>
+</body>
+</html>

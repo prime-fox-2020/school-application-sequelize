@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data teachers page</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <%- include('partials/nav-bar')%>
+    
+    <h1>DATA TEACHERS</h1>
+
+    <form action="/teachers/:email" method="post">
+        <label>Search Teacher by Email</label> <br>
+        <input type="text" name="teacher_by_email"><br>
+        <button type="submit">Search</button> <br><br>
+    </form>
+    <br><br>
+
+    <button><a href="/teachers/add">Add new teacher</a></button> <br><br>
+    
+
+    <%if (pesan) {%>
+        <p><%=pesan%></p>
+    <%}%>
+
+    <table border="2">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>FIRST NAME</td>
+                <td>LAST NAME</td>
+                <td>EMAIL</td>
+                <td>GENDER</td>
+                <td colspan="2">OPTIONS</td>
+            </tr>
+        </thead>
+        <tbody>
+            <%for (let i in data) {%>
+                <tr>
+                    <td><%=data[i].id%></td>
+                    <td><%=data[i].first_name%></td>
+                    <td><%=data[i].last_name%></td>
+                    <td><%=data[i].email%></td>
+                    <td><%=data[i].gender%></td>
+                    <td><a href="/teachers/edit/<%=data[i].id%>">EDIT</a></td>
+                    <td><a href="/teachers/delete/<%=data[i].id%>">DELETE</a></td>
+                </tr>    
+            <%}%>
+        </tbody>
+    </table>
+    <%- include('partials/back-to-home')%>
+    
+</body>
+</html>

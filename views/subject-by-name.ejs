@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>subject by name page</title>
+</head>
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>
+<body>
+    <%- include('partials/nav-bar')%>
+    <h1>DATA SUBJECT BY NAME</h1>
+
+    <% if (pesan) {%>
+        <h4><%=pesan%></h4>
+    <%}%>
+
+    <%if (dataByName) {%>
+        <table border="2">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>SUBJECT NAME</td>
+                    <td>NILAI MINUMUM</td>
+                    <td colspan="2">OPTIONS</td>
+                </tr>
+            </thead>
+            <tbody>
+                <%for (let i in dataByName) {%>
+                    <tr>
+                        <td><%=dataByName[i].id%></td>
+                        <td><%=dataByName[i].subject_name%></td>
+                        <td><%=dataByName[i].nilai_minimum%></td>
+                        <td><a href="/subjects/edit/<%=dataByName[i].id%>">EDIT</a></td>
+                        <td><a href="/subjects/delete/<%=dataByName[i].id%>">DELETE</a></td>
+                    </tr>    
+                <%}%>
+            </tbody>
+        </table>
+    <%}%>
+
+</body>
+</html>

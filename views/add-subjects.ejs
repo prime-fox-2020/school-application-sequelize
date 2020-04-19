@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add subject page</title>
+</head>
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>
+<body>
+    <%- include('partials/nav-bar')%>
+    <h1>Add New Subject</h1>
+
+    <form action="/subjects/add" method="post"> 
+        <%if (error === 'Subject Name harus diisi') {%>
+            <p><%= error %></p>
+        <%}%>
+        <label>Subject Name:</label> <br>
+        <input type="text" name="subject_name"> <br><br>
+
+        <%if (error === 'Nilai Minimum harus diisi') {%>
+            <p><%= error %></p>
+        <%} else if (error === 'Nilai Minimum tidak valid') {%>
+            <p><%= error %></p>
+        <%}%>
+        <label>Nilai Minimum: (1 s/d 10)</label> <br>
+        <input type="number" name="nilai_minimum"> <br><br>
+
+        <button type="submit">Add</button>
+        <button><a href="/subjects">Cancel</a></button>
+    </form>
+
+</body>
+</html>
