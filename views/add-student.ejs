@@ -1,0 +1,49 @@
+<%- include('partials/header')%> <!-- par1-->
+<body>
+    <%- include('partials/navbar-students')%> <!-- par2-->
+
+    <div class="jumbotron">
+    <h1 class="text-center ">Add Student Data</h1> <!-- judul -->
+        <div class="container-xl p-5 text-center">
+        <% if(alert.msg){ %>
+            <div class="container">
+                <div class="alert alert-danger" role="alert">
+                    <%= alert.msg %>
+                </div>
+            </div>
+        <% } %>
+        </div>
+        <!-- use form from boots, deletetable-->
+        <form action="/students/add" method="post">
+        <!-- bring to stud/add by post--> 
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Firstname:</label><br>
+                <!-- <txtarea name...id="exampleFControlTextarea1" rows="1"></textarea> -->
+                <input  class="form-control" type="text" name="first_name" placeholder="Your first-name" autofocus><br> <!-- text VARCHAR -->
+            </div>
+            <div class="form-group">
+                <label for="">Lastname:</label><br> <!-- text VARCHAR -->
+                <input  class="form-control" type="text" name="last_name" placeholder="Your last-name"><br>
+            </div>
+            <div class="form-group">
+                <label for="">Email:</label><br> <!-- text VARCHAR -->
+                <input  class="form-control" type="text" name="email" placeholder="Your email"><br>
+            </div>
+            <div class="form-group"> <!-- text VARCHAR / SELECT-->
+                <label for="">Select gender:</label><br>
+                <select name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select><br>
+            </div>
+            <div class="form-group"> <!-- text VARCHAR ? DATE -->
+                <label for="">Birthdate:</label><br>
+                <input  class="form-control" type="text" name="birth_date" placeholder="Your birth-date"><br>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <!-- button type submit "btn btn-primary" -->
+        </form>
+    </div>
+    
+</body>
+</html>
