@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+  <body>
+    <h1>Edit student</h1>
+    <a href="/students"><h3>View students data</h3></a>
+        <% if (error){ %>
+              <%= error.error %>
+        <% } %>
+        <form action="/students/<%= students.id %>/edit" method="POST">
+          <input placeholder="first_name" type="text" name="first_name" required value="<%= students.first_name %>"><br>
+          <input placeholder="last_name" type="text" name="last_name" required value="<%= students.last_name %>"><br>
+          <input placeholder="email" type="text" name="email" required value="<%= students.email %>"><br>
+          <select name="gender" required> 
+          <option value="male" <% if(students.gender === 'male'){ %> <%= 'selected' %> <% } %> >male</option> 
+            <option value="female" <% if(students.gender === 'female'){ %> <%= 'selected' %><% } %>>female</option>
+          </select> <br>
+          <input placeholder="dd-mm-yyyy" type="text" name="birth_date" value="<%=`${students.birth_date.getDate()}-${students.birth_date.getMonth()+1}-${students.birth_date.getFullYear()}`%>" required><br>
+          <button type="submit">Submit</button>
+        </form>
+  </body>
+<%- include('partials/footer') %>
