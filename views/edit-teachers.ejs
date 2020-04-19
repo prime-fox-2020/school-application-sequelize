@@ -13,28 +13,41 @@
 <body>
     <nav>
         <ul>
-            <li><a href="/students">Data Students (belum ada data hanya judul halamannya saja)</a></li>
-            <li><a href="/teachers">Data Teachers (belum ada data hanya judul halamannya saja)</a></li>
+            <li><a href="/students">Data Students</a></li>
+            <li><a href="/teachers">Data Teachers</a></li>
             <li><a href="/subjects">Data Subjects (belum ada data hanya judul halamannya saja)</a></li>
             <li><a href="/">Home</a></li>
         </ul>
     </nav>
     <h1>Edit Teacher</h1>
 
-    <form action="/teachers/edit/:id" method="post"> 
-        <label>First Name:</label> <br>
-        <input type="text" name="first_name"> <br><br>
+    <form action="/teachers/edit/<%=id%>" method="post"> 
 
+        <%if (error === 'First Name harus diisi') {%>
+            <p><%= error %></p>
+        <%}%>
+        <label>First Name:</label> <br>
+        <input type="text" name="first_name" value="<%=dataTeachers.first_name%>"> <br><br>
+
+
+        <%if (error === 'Last Name harus diisi') {%>
+            <p><%= error %></p>
+        <%}%>
         <label>Last Name:</label> <br>
-        <input type="text" name="last_name"> <br><br>
+        <input type="text" name="last_name" value="<%=dataTeachers.last_name%>"> <br><br>
         
+        <%if (error === 'Email harus diisi') {%>
+            <p><%= error %></p>
+        <%} else if (error === 'Email harus ada character @') {%>
+            <p><%= error %></p>
+        <%}%>
         <label>Email:</label> <br>
-        <input type="text" name="email"> <br><br>
+        <input type="text" name="email" value="<%=dataTeachers.email%>"> <br><br>
         
         <label>Gender:</label> <br>
         <select name="gender">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="male" <%= dataTeachers.gender === 'male' ? 'selected' : ''%>>Male</option>
+            <option value="female" <%= dataTeachers.gender === 'female' ? 'selected' : ''%>>Female</option>
         </select> <br><br>
 
         <button type="submit">Save</button>

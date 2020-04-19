@@ -1,20 +1,134 @@
-const SubjectsModel = require('../models/subject')
+const {Subject} = require('../models');
 
 class SubjectsController {
+    // Menampilkan seluruh data Subjects dari database
     static showSubjects(req, res) {
-        res.render('subjects.ejs')
+        Subject.findAll({order: [['id', 'ASC']]})
+        .then(data => {
+            let pesan = req.query.pesan
+            let id = req.params.id
+            res.render("subjects.ejs", {data, pesan, id})
+        })
+        .catch(err => {
+            res.send(err)
+        })
     }
 
+    // Routing / Menampilkan form add new subjects
     static getAddForm(req, res) {
-        res.render('add-subjects')
+        let error = req.query.error
+        res.render("add-subjects.ejs", {error})
     }
 
-    // static postAdd(req, res) {
 
-    // }
+    // Mengolah input user dari form add new student untuk kemudian 
+    // ditambilkan kembali pada halaman utama students data
+    static postAdd(req, res) {
+        let sn = false;
 
+        // Check & Validasi Subject Name
+        if (req.body.subject_name === '' || req.body.subject_name === undefined) {
+            res.redirect('/subjects/add?error=Subject Name harus diisi')
+        } else {
+            sn = true
+        }    
+        
+        // Check All validations
+        if (sn) {
+            let queryBody = req.body
+            Subject.create({
+                "subject_name": queryBody.subject_name
+            })
+            .then(data => {
+                res.redirect(`/subjects?pesan=berhasil menambah data subject dengan nama ${queryBody.subject_name}`)
+            })
+            .catch(err => {
+                res.send(err)
+            })
+        } 
+    }
+
+    // Routing atau menampilkan form edit subject
     static getEditForm(req, res) {
-        res.render("edit-subjects.ejs")
+        let id = req.params.id
+        Subject.findByPk(id)
+        .then(data => {
+            let dataSubjects = data.dataValues
+            let error = req.query.error                
+            res.render('edit-subjects.ejs', {id, dataSubjects, error})
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
+    // Mengolah input user dari form edit students untuk kemudian 
+    // ditambilkan kembali pada halaman utama students data dengan data yang telah
+    // terupdate
+    static postEdit(req, res) {
+        let sn = false;
+    
+        // Check & validasi subject name
+        if (req.body.subject_name === '' || req.body.subject_name === undefined) {
+            res.redirect(`/subjects/edit/${req.params.id}?error=Subject Name harus diisi`)
+        } else {
+            sn = true
+        }    
+        
+        // Check All validations
+        if (sn) {
+            let queryBody = req.body
+            let id = req.params.id
+            Subject.update({
+                "subject_name": queryBody.subject_name
+            }, {returning: true, where: {id}})
+            .then(data => {
+                res.redirect(`/subjects?pesan=berhasil edit data subject dengan id ${id}`)
+            })
+            .catch(err => {
+                res.send(err)
+            })
+        }
+    }
+
+    // Delete data sesuai dengan id yang dipilih
+    static delete(req, res) {
+        let id = req.params.id
+        Subject.destroy({where: {id}})
+        .then(data => {
+            res.redirect(`/subjects?pesan=berhasil delete data subject dengan id ${id}`)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
+    // Filter student berdasarkan id
+    static searchSubjectByName(req, res) {
+        Subject.findAll()
+        .then(data => {
+            let dataByName = []
+            let queryBody = req.body.subject_by_name
+            let pesan = null
+            let check = false
+            for (let i in data) {
+                if (data[i].subject_name == queryBody) {
+                    dataByName.push(data[i])
+                    check = true
+                }
+            }
+
+            if (check == false) {
+                pesan = "Maaf data subject dengan nama " + queryBody + " tidak ada dalam database"
+                res.render("subject-by-name.ejs", {dataByName, queryBody, pesan})
+            } else {
+                pesan = ''
+                res.render("subject-by-name.ejs", {dataByName, queryBody, pesan})
+            }
+        })
+        .catch(err => {
+            res.send(err)
+        })
     }
 }
 

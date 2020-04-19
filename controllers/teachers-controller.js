@@ -3,7 +3,7 @@ const {Teacher} = require('../models')
 class TeachersController {
     // Menampilkan seluruh data dari database
     static showTeachers(req, res) {
-        Teacher.findAll()
+        Teacher.findAll({order: [['id', 'ASC']]})
         .then(data => {
             let pesan = req.query.pesan
             let id = req.params.id
@@ -94,26 +94,26 @@ class TeachersController {
 
         // Check & validasi first name
         if (req.body.first_name === '' || req.body.first_name === undefined) {
-            res.redirect(`/students/edit/${req.params.id}?error=First Name harus diisi`)
+            res.redirect(`/teachers/edit/${req.params.id}?error=First Name harus diisi`)
         } else {
             fn = true
         }    
 
         // Check & validasi last name
         if (req.body.last_name === '' || req.body.last_name === undefined) {
-            res.redirect(`/students/edit/${req.params.id}?error=Last Name harus diisi`)
+            res.redirect(`/teachers/edit/${req.params.id}?error=Last Name harus diisi`)
         } else {
             ln = true
         }   
 
         // check & validasi email
         if (req.body.email === '' || req.body.email === undefined) {
-            res.redirect(`/students/edit/${req.params.id}?error=Email harus diisi`)
+            res.redirect(`/teachers/edit/${req.params.id}?error=Email harus diisi`)
         } else if (req.body.email) {
             if (req.body.email.includes('@')) {
                 eml = true;
             } else {
-                res.redirect(`/students/edit/${req.params.id}?error=Email harus ada character @`)
+                res.redirect(`/teachers/edit/${req.params.id}?error=Email harus ada character @`)
             }
         }
 
@@ -157,7 +157,7 @@ class TeachersController {
             let pesan = null
             let check = false
             for (let i in data) {
-                if (data[i].id == queryBody) {
+                if (data[i].email == queryBody) {
                     dataByEmail.push(data[i])
                     check = true
                 }

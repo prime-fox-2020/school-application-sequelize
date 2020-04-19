@@ -3,7 +3,7 @@ const {Student} = require('../models');
 class StudentsController {
     // Menampilkan seluruh data dari database
     static showStudents(req, res) {
-        Student.findAll()
+        Student.findAll({order: [['id', 'ASC']]})
         .then(data => {
             let pesan = req.query.pesan
             let id = req.params.id
@@ -110,7 +110,7 @@ class StudentsController {
         } 
     }
 
-    // Routing atau menampilkan form edit students
+    // Routing atau menampilkan form edit student
     static getEditForm(req, res) {
         let id = req.params.id
         Student.findByPk(id)
@@ -228,11 +228,11 @@ class StudentsController {
     }
 
     // Filter student berdasarkan id
-    static searchStudentsById(req, res) {
+    static searchStudentById(req, res) {
         Student.findAll()
         .then(data => {
             let dataById = []
-            let queryBody = req.body.students_by_id
+            let queryBody = req.body.student_by_id
             let pesan = null
             let check = false
             for (let i in data) {
