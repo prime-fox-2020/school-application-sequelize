@@ -22,6 +22,15 @@
         <label>Subject Name:</label> <br>
         <input type="text" name="subject_name" value="<%=dataSubjects.subject_name%>"> <br><br>
 
+
+        <%if (error === 'Nilai Minimum harus diisi') {%>
+            <p><%= error %></p>
+        <%} else if (error === 'Nilai Minimum tidak valid') {%>
+            <p><%= error %></p>
+        <%}%>
+        <label>Nilai Minimum: (1 s/d 10)</label> <br>
+        <input type="number" name="nilai_minimum" value="<%=dataSubjects.nilai_minimum%>"> <br><br>
+
         <button type="submit">Save</button>
         <button><a href="/subjects">Cancel</a></button>
     </form>

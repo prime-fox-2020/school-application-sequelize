@@ -34,6 +34,7 @@
             <tr>
                 <td>ID</td>
                 <td>SUBJECT NAME</td>
+                <td>NILAI MINUMUM</td>
                 <td colspan="2">OPTIONS</td>
             </tr>
         </thead>
@@ -42,6 +43,7 @@
                 <tr>
                     <td><%=data[i].id%></td>
                     <td><%=data[i].subject_name%></td>
+                    <td><%=data[i].nilai_minimum%></td>
                     <td><a href="/subjects/edit/<%=data[i].id%>">EDIT</a></td>
                     <td><a href="/subjects/delete/<%=data[i].id%>">DELETE</a></td>
                 </tr>    
