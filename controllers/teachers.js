@@ -24,6 +24,7 @@ class TeacherController {
             res.render('error', err)
         })
     }
+    
 }
 
 module.exports = TeacherController
