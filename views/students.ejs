@@ -1,0 +1,48 @@
+<%- include('partials/header')%> <!-- par1-->
+<body>
+  <%- include('partials/navbar-students')%> <!-- par2-->
+  
+  <h1 class="text-center ">Students</h1> <!-- judul -->
+  
+  <div class="container mt-5"><a href="/">Home</a></div>
+  <div class="container mt-5 text-center">
+    
+    <% if(alert.msg){ %>
+      <div class="container p-3">
+        <div class="alert alert-info" role="alert">
+          <%= alert.msg %>
+        </div>
+      </div>
+    <% } %>
+
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+          <th scope="col" class="text-center">ID</th>
+          <th scope="col" class="text-center">First Name</th>
+          <th scope="col" class="text-center">Last Name</th>
+          <th scope="col" class="text-center">Email</th>
+          <th scope="col" class="text-center">Gender</th>
+          <th scope="col" class="text-center">Birth Date</th>
+          <th scope="col" class="text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach( list => { %>
+            <tr>
+              <td class="text-center"><%= list.id %></td>
+              <td class="text-center"><%= list.first_name %></td>
+              <td class="text-center"><%= list.last_name %></td>
+              <td class="text-center"><%= list.email %></td>
+              <td class="text-center"><%= list.gender %></td>
+              <td class="text-center"><%= list.birth_date %></td>
+              <td class="text-center"><a href="/students/<%= list.id %>/edit"><button type="button" class="btn btn-primary">Edit</button></a> <a href="/students/<%= list.id %>/delete"><button type="button" class="btn btn-danger">Delete</button></a></td>
+            </tr>
+          <% }) %>
+      </tbody>
+    </table>
+
+  </div>
+
+</body>
+</html>

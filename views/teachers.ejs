@@ -1,0 +1,35 @@
+<%- include('partials/header')%>
+<body>
+
+    <div class="container mt-5"> <!-- father div -->
+    <h1 class="text-center">Meet Our Teachers</h1> <!-- judul -->
+    <div class="container mt-5"><a href="/">Home</a></div> <!-- bring to '/' home -->
+        <% if(data){ %> <!-- open condition @ TeachController {data} -->
+        <table class="table table-striped  mt-5">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Gender</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% data.forEach( key => { %> <!-- loop {data} wit key -->
+                <tr>
+                    <td><a href="/teachers/<%= key.id %>"><%= key.id %></a></td>
+                    <!-- bring to ..3000/teachers/1 -->
+                    <td><%= key.first_name %></td>
+                    <td><%= key.last_name %></td>
+                    <td><%= key.email %></td>
+                    <td><%= key.gender %></td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+        <% } %> <!-- close condition -->
+    </div>
+
+</body>
+</html>

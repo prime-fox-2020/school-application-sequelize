@@ -1,0 +1,45 @@
+<%- include('partials/header')%>
+<body>
+    <%- include('partials/navbar-students')%>
+
+    <div class="jumbotron">
+        <!-- use form from boots, deltable, *delgend*-->
+        <h1 class="text-center ">Edit Student Data</h1> <!-- judul -->
+        <% if(alert.msg){ %>
+            <div class="container text-center">
+                <div class="alert alert-danger" role="alert">
+                    <%= alert.msg %>
+                </div>
+            </div>
+        <% } %>
+        <form action="/students/<%=data.id%>/edit" method="post">
+        <!--action: stud/id/edit-->
+            <div class="form-group">
+                <label for="">Firstname:</label>  <!-- text VARCHAR -->
+                <input type="text" name="first_name" value="<%=data.first_name%>" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Lastname:</label>  <!-- text VARCHAR -->
+                <input type="text" name="last_name" value="<%=data.last_name%>" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Email:</label>  <!-- text VARCHAR -->
+                <input type="text" name="email" value="<%=data.email%>" class="form-control">
+            </div>
+            <div class="form-group">  <!-- text VARCHAR / SELECT -->
+                <label for="">Select gender:</label><br>
+                <select name="gender">
+                    <option value="male" <%= data.gender == 'male' ? 'selected' : '' %>>Male</option>
+                    <option value="female" <%= data.gender = 'female' ? 'selected' : '' %>>Female</option>
+                </select><br>
+            </div>
+            <div class="form-group">
+                <label for="">Birthdate:</label> <!-- text VARCHAR -->
+                <input type="text" name="birth_date" value="<%=data.birth_date%>" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Changes</button>
+            <!-- button type submit "btn btn-primary" -->
+        </form>
+    </div>
+</body>
+</html>
