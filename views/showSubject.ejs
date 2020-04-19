@@ -1,0 +1,33 @@
+<%- include('../template/head', {title}); %>
+<%- include('../template/navbar', {title, text: 'School App'}); %>
+
+<%if(alert) {%>
+<div class="alert alert-success" role="alert">
+  <%= alert%>
+</div>
+<%}%>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Subject Name</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(let i in data) {%>
+<tr>
+  <th scope="row"><%=data[i].id%></th>
+  <td><%=data[i].subject_name%></td>
+  <td>
+    <a href="/subjects/edit/<%=data[i].id%>" type="button" class="btn btn-primary">Edit</a> &nbsp;
+    <a href="/subjects/delete/<%=data[i].id%>" type="button" class="btn btn-danger">Delete</a>
+  </td>
+</tr>
+<%}%>
+</tbody>
+</table>
+
+</body>
+
+</html>
