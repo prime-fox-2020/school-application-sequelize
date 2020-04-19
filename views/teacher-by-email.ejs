@@ -11,14 +11,7 @@
     }
 </style>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/students">Data Students</a></li>
-            <li><a href="/teachers">Data Teachers</a></li>
-            <li><a href="/subjects">Data Subjects (belum ada data hanya judul halamannya saja)</a></li>
-            <li><a href="/">Home</a></li>
-        </ul>
-    </nav>
+    <%- include('partials/nav-bar')%>
     <h1>DATA TEACHER BY EMAIL</h1>
 
     <% if (pesan) {%>

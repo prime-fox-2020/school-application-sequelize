@@ -11,14 +11,7 @@
     }
 </style>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/students">Data Students</a></li>
-            <li><a href="/teachers">Data Teachers</a></li>
-            <li><a href="/subjects">Data Subjects</a></li>
-            <li><a href="/">Home</a></li>
-        </ul>
-    </nav>
+    <%- include('partials/nav-bar')%>
     <h1>Add New Student</h1>
 
     <form action="/students/add" method="post"> 
