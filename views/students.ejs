@@ -7,6 +7,11 @@
     <body>
         <%- include('./partials/navbar.ejs') %>
         <div class="jumbotron">
+            <% if (alert){ %>
+                <div class="alert alert-<%= alert.type %>" role="alert">
+                    <%= alert.message %>
+                </div>
+            <% } %>
             
             <table class="table">
                 <thead>
