@@ -50,10 +50,9 @@ class ControllerStudent {
     static edit(request, respond) {
         let findId = Number(request.params.id)
         const error = request.query.error
-        respond.render('edit_students', { id: findId, error })
         Student.findAll({ where: { id: findId } })
             .then(edit => {
-                respond.render('edit_student', { id: findId,data, error })
+                respond.render('edit_students', { id: findId,data, error })
             })
             .catch(err => {
                 respond.render('error', { err })
