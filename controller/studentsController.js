@@ -53,7 +53,7 @@ class ControllerStudent {
         respond.render('edit_students', { id: findId, error })
         Student.findAll({ where: { id: findId } })
             .then(edit => {
-                respond.render('edit_student', { id: findId, error })
+                respond.render('edit_student', { id: findId,data, error })
             })
             .catch(err => {
                 respond.render('error', { err })
