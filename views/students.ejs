@@ -1,0 +1,11 @@
+<%- include('./partials/header', {title: "Student list"}); %>
+
+    <br><button onclick="location.href = '/students/add';" class="btn btn-outline-success navbar mx-auto" type="button">
+        Add students
+    </button><br>
+    
+    <%- include('./partials/notif') %>
+
+    <%- include('./partials/table') %>
+
+<%- include('./partials/footer'); %>
